@@ -1,0 +1,60 @@
+<style>
+#output {
+color: #000000;
+font-style: italic;
+}
+#textarea{
+  bgcolour=#800080
+}
+#body{bgcolour=#800080}
+</style>
+
+<body bgcolor="#800080">
+	<form name="name" onsubmit="return updateWhen();" >
+		When/Where: <input type="text" name=“somename” id="When"/>
+		<input type="submit" name="Submit" value="Save Entry"/>
+	</form>
+	<table>
+		<tbody>
+			<tr>
+				<td>When/Where</td>
+		</tr>
+			<tr class="spaceUnder">
+				<td><div id="WhenWhere"></div></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div id="control">
+		<button id="button" onclick="ShowWhenWhere();">Show When/Where</button>
+	</div>
+
+	
+	
+<script>
+function showWhenWhere() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("WhenWhere").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "getWhen.php", true);
+        xmlhttp.send();
+    }
+}
+
+function updateWhen() {
+		var str = document.getElementById("When").value;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("When").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "When.php?q=" + str, true);
+        xmlhttp.send();
+    }
+}
+</script>
+</body>

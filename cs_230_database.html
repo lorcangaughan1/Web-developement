@@ -1,0 +1,90 @@
+
+<style>
+#output {
+color: #000000;
+font-style: italic;
+}
+#textarea{
+  bgcolour=#800080
+}
+#body{bgcolour=#800080}
+</style>
+
+<body bgcolor="#800080">
+	<form name="name" onsubmit="return updateWhen();" >
+		When/Where: <input type="text" name=“somename” id="When"/>
+		<input type="submit" name="Submit" value="Save Entry"/>
+	</form>
+
+	<form name="name" onsubmit="return Event();" >
+		Event: <input type="text" name=“somename” id="Event_name"/>
+		<input type="submit" name="Submit" value="Save Entry"/>
+	</form>
+	<form name="name" onsubmit="return Emotions();" >
+		Emotion: <input type="text" name=“somename” id="Emotion_name"/>
+		<input type="submit" name="Submit" value="Save Entry"/>
+	</form>
+	<form name="name" onsubmit="return thoughts();" >
+		Authomatic thoughts: <input type="text" name=“somename” id="thoughts_name"/>
+		<input type="submit" name="Submit" value="Save Entry"/>
+	</form>
+	<form name="name" onsubmit="return response();" >
+		Rational Response: <input type="text" name=“somename” id="response_name"/>
+		<input type="submit" name="Submit" value="Save Entry"/>
+	</form>
+	<table>
+		<tbody>
+			<tr>
+				<td>When/Where</td>
+				<td>Event</td>
+				<td>Emotion</td>
+				<td>Automatic thoughts</td>
+				<td>Rational response</td>
+		</tr>
+			<tr class="spaceUnder">
+				<td><div id="WhenWhere"></div></td>
+				<td><div id="outputs"></div></td>
+				<td><div id="emotionss"></div></td>
+				<td><div id="stuffs"></div></td>
+				<td><div id="outputsss"></div></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div id="control">
+		<button id="button" onclick="ShowWhenWhere();">Show When/Where</button>
+		<button id="button" onclick="ShowEvent();">Show Events</button>
+		<button id="button" onclick="Thoughtsss();">Show thoughts</button>
+		<button id="button" onclick="ShowEmotion();">Show Emotions</button>
+		<button id="button" onclick="Responses();">Show Reponses</button>
+	</div>
+
+	
+	
+<script>
+function showWhenWhere() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("WhenWhere").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "getWhen.php", true);
+        xmlhttp.send();
+    }
+}
+
+function updateWhen() {
+		var str = document.getElementById("When").value;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("When").innerHTML = xmlhttp.responseText;
+            }
+        };
+        xmlhttp.open("GET", "When.php?q=" + str, true);
+        xmlhttp.send();
+    }
+}
+</script>
+</body>

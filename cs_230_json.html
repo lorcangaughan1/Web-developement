@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Json</h1>
+<div id="id01"></div>
+
+<script>
+while(true){
+TimeUnit.SECONDS.sleep(30);
+var xmlhttp = new XMLHttpRequest();
+var url = "http://www.w3schools.com/website/Customers_MYSQL.php";
+
+xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        myFunction(xmlhttp.responseText);
+    }
+}
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+}
+function myFunction(response) {
+    var arr = JSON.parse(response);
+    var i;
+    var out = "<table>";
+
+    for(i = 0; i < arr.length; i++) {
+        out += "<tr><td>" +
+        arr[i].store_name +
+        "</td><td>" +
+        arr[i].peopleIn +
+        "</td><td>" +
+        arr[i].peopleOut +
+        "</td></tr>";
+    }
+    out += "</table>";
+    document.getElementById("id01").innerHTML = out;
+}
+</script>
+
+</body>
+</html>
